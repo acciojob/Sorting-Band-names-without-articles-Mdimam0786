@@ -1,42 +1,27 @@
-//your code here
-let ul = document.getElementById("band");
-let arr = ["The Virupaksha Temple", "Victoria Memorial", "Tajmahal"];
-// console.log(arr);
+// Suppose an array that contains a list of popular tourist spots
+let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
 
-function getArticleLessString(input) {
-  let words = input.split(" ");
-  let nonArticleWords = words.filter((word) => {
-    let smallCaseWord = word.toLowerCase();
-    if (
-      smallCaseWord === "the" ||
-      smallCaseWord === "an" ||
-      smallCaseWord === "a"
-    ) {
-      return false;
+// Function to remove articles from a string and return the modified string
+function removeArticles(name) {
+    const articles = ['a', 'an', 'the'];
+    const words = name.toLowerCase().split(' ');
+
+    if (articles.includes(words[0])) {
+        words.shift();
     }
-    return true;
-  });
-  return nonArticleWords.join(" ");
+
+    return words.join(' ');
 }
 
-let hashMap = {};
-let arr1 = [];
+// Sort the band names while removing articles
+touristSpots.sort((a, b) => removeArticles(a).localeCompare(removeArticles(b)));
 
-for (let i = 0; i < arr.length; i++) {
-  let articleLessString = getArticleLessString(arr[i]);
-  hashMap[articleLessString] = arr[i];
-  arr1.push(articleLessString);
-}
-arr1.sort();
-let outputList = [];
-arr1.forEach((newString) => {
-  outputList.push(hashMap[newString]); //
+// Get the ul element by id
+const bandList = document.getElementById('band');
+
+// Populate the ul element with li elements
+touristSpots.forEach(name => {
+    const li = document.createElement('li');
+    li.textContent = name;
+    bandList.appendChild(li);
 });
-// console.log(outputList);
-
-for (let i = 0; i < outputList.length; i++) {
-  let li = document.createElement("li");
-  li.innerText = outputList[i];
-  ul.append(li);
-}
-

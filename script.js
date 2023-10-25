@@ -1,16 +1,22 @@
-//your code here
-let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
-let withoutArticles = [];
-let map = {};
-for(let i=0; i<touristSpots.length; i++){
-	let str = touristSpots[i];
-	str = str.replace(/\ban\b|\bThe\b|\ba\b/gi, "")
-	str = str.replace(/ +/gi, " ");
-	str = str,trim();
-	map[str]= touristSpots[i];
-	withoutArticles.push(str);
+function removeArticles(name) {
+  return name.replace(/^(a|an|the)\s+/i, '').trim();
 }
-withoutArticles.sort();
-for(let i=0; i<touristSpots.length; i++){
-	console.log(map[touristSpots[i]]);
-}
+ 
+// Array of band names
+let bandNames = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal']
+ 
+// Remove articles and sort the band names
+let sortedBandNames = bandNames.map(removeArticles).sort();
+ 
+// Create an HTML list
+const ul = document.createElement('ul');
+ul.id = 'band';
+ 
+sortedBandNames.forEach(name => {
+  const li = document.createElement('li');
+  li.textContent = name;
+  ul.appendChild(li);
+});
+ 
+// Append the list to the document's body or another desired location
+document.body.appendChild(ul);

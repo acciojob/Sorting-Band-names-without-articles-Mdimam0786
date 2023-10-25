@@ -1,12 +1,22 @@
-let arr=['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
-int n=arr.length;
-let non_article=[];
-for(int i=0;i<n;i++){
-	let str=arr[i];
-	str=str.replace(/\bthe\b|\bthe\b|\bthe\b/gi,"");
-	str=str.trim();
-	non_article.push(str);
-	
+//your code here
+let bandNames = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
+let artircles = ['A','AN','THE'];
+
+bandNames.sort((a,b)=>
+	(strip(a)- strip(b)) ? 1 : -1;)
+			  const ref = document.getElementsByTagName("ul")[0];
+for(let i = 0;i<bandNames.length;i++){
+	const li = document.createElement("li")
+	li.innerText = bandNames[i]
+	ref.append(li);
 }
-non_article.sort();
-console.log(non_article);
+function strip(word){
+	let arr = word.split(" ");
+	let s = "";
+	for(let i = 0;i<arr.length;i++){
+		if(articles.indexOf(arr[i]).toUpperCase()) === -1){
+			s = s+arr[i];
+		}
+	}
+	return s.trim();
+}

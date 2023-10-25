@@ -1,42 +1,16 @@
 //your code here
-// An array of band names
-let bandNames = ['The Rolling Stones', 'Aerosmith', 'The Beatles', 'Led Zeppelin', 'Nirvana'];
-
-// Function to remove articles and sort the band names
-function sortBandNamesWithoutArticles(bandNames) {
-  const articles = ['a', 'an', 'the'];
-  
-  // Custom sorting function
-  const customSort = (a, b) => {
-    a = a.toLowerCase();
-    b = b.toLowerCase();
-
-    for (const article of articles) {
-      if (a.startsWith(article + ' ')) {
-        a = a.slice(article.length + 1);
-        break;
-      }
-    }
-
-    for (const article of articles) {
-      if (b.startsWith(article + ' ')) {
-        b = b.slice(article.length + 1);
-        break;
-      }
-    }
-
-    return a.localeCompare(b);
-  };
-
-  // Sort the band names using the custom sorting function
-  bandNames.sort(customSort);
-
-  return bandNames;
+let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
+let withoutArticles = [];
+let map = {};
+for(let i=0; i<touristSpots.length; i++){
+	let str = touristSpots[i];
+	str = str.replace(/\ban\b|\bThe\b|\ba\b/gi, "")
+	str = str.replace(/ +/gi, " ");
+	str = str,trim();
+	map[str]= touristSpots[i];
+	withoutArticles.push(str);
 }
-
-// Sort the band names without articles
-const sortedBandNames = sortBandNamesWithoutArticles(bandNames);
-
-// Update the HTML content dynamically
-const bandList = document.getElementById('band');
-bandList.innerHTML = sortedBandNames.map(band => `<li>${band}</li>`).join('');
+withoutArticles.sort();
+for(let i=0; i<touristSpots.length; i++){
+	console.log(map[touristSpots[i]]);
+}

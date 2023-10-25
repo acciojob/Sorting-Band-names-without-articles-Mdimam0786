@@ -1,22 +1,14 @@
 //your code here
-let bandNames = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
-let artircles = ['A','AN','THE'];
-
-bandNames.sort((a,b)=>
-	(strip(a)- strip(b)) ? 1 : -1;)
-			  const ref = document.getElementsByTagName("ul")[0];
-for(let i = 0;i<bandNames.length;i++){
-	const li = document.createElement("li")
-	li.innerText = bandNames[i]
-	ref.append(li);
-}
-function strip(word){
-	let arr = word.split(" ");
-	let s = "";
-	for(let i = 0;i<arr.length;i++){
-		if(articles.indexOf(arr[i]).toUpperCase()) === -1){
-			s = s+arr[i];
+function getArticleLessString(input) {
+	let words = input.split(" ");
+	let nonArticleWords = words.filter((word) => {
+		let smallCaseWord = word.toLowerCase();
+		if(smallCaseWord === "the" || smallCaseWord === "an" || smallCaseWord === "a"){
+			return false;
 		}
-	}
-	return s.trim();
+		return true;
+	});
+	let result = nonArticleWords.join(" ");
+	return result.sort();
 }
+

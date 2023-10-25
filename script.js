@@ -1,27 +1,17 @@
-// Suppose an array that contains a list of popular tourist spots
-let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
+//your code here
+function removeArticles(touristSpots) {
+ const articlePattern = /^(a|an|the)\s/i;
 
-// Function to remove articles from a string and return the modified string
-function removeArticles(name) {
-    const articles = ['a', 'an', 'the'];
-    const words = name.toLowerCase().split(' ');
+  // Sort the array based on lexicographic order excluding articles
+  touristSpots.sort((a, b) => {
+    const nameA = a.replace(articlePattern, '').toLowerCase();
+    const nameB = b.replace(articlePattern, '').toLowerCase();
+    return nameA.localeCompare(nameB);
+  });
 
-    if (articles.includes(words[0])) {
-        words.shift();
-    }
-
-    return words.join(' ');
+  // Display the sorted tourist spots
+  console.log(touristSpots);
 }
 
-// Sort the band names while removing articles
-touristSpots.sort((a, b) => removeArticles(a).localeCompare(removeArticles(b)));
-
-// Get the ul element by id
-const bandList = document.getElementById('band');
-
-// Populate the ul element with li elements
-touristSpots.forEach(name => {
-    const li = document.createElement('li');
-    li.textContent = name;
-    bandList.appendChild(li);
-});
+removeArticles(touristSpots);
+/
